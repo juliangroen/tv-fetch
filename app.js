@@ -8,12 +8,12 @@ async function fetchShow(url) {
     }
 }
 
-let showUrl = 'http://api.tvmaze.com/shows/1121';
+let showUrl = 'https://api.tvmaze.com/shows/1121';
 
 fetchShow(showUrl)
     .then((data) => {
         document.body.innerHTML += `<h1>${data.name}</h1><img src="${data.image.medium}" alt=""/><h1>Episodes:</h1>`;
-        return fetchShow(`${data._links.self.href}/episodes`);
+        return fetchShow(`${showUrl}/episodes`);
     })
     .then((data) => {
         data.map((episode) => {
